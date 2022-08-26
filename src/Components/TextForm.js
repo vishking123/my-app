@@ -1,24 +1,27 @@
-import React from 'react'
-// import PropTypes from 'prop-types'
+import React, {useState} from 'react'
+
+
 export default function TextForm(props) {
+    const [text,setText]= useState("Enter text here");
+    // text ="values"; -- wrong way
+    // setText("values");  --correct way
+    const handleUpClick =()=>{
+        console.log("Uppercase was clicked");
+        setText("You have clicked on UpperCase");
+    }
+    const handleOnChange =()=>{
+        console.log("OnChange Handled");
+    }
+
   return (
     <div>
       <form>
   <div className="mb-3">
     <label htmlFor="myBox" className="form-label">{props.heading}</label>
-    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+    <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8"></textarea>
   </div>
 
-  {/* <div class="mb-3">
-    <label for="exampleInputPassword1" className="form-label">Password</label>
-    <input type="password" className="form-control" id="exampleInputPassword1"/>
-  </div>  */}
-  {/* <div class="mb-3 form-check">
-    <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-    <label className="form-check-label" for="exampleCheck1">Check me out</label>
-  </div> */}
-
-  <button type="submit" className="btn btn-primary">Submit</button>
+  <button type="submit" className="btn btn-primary" onClick={handleUpClick}>Convert to UpperCase</button>
 </form>
     </div> 
   );
